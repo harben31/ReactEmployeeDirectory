@@ -1,0 +1,25 @@
+.empList {
+    background: orange;
+    display: flex;
+    height: 60px;
+    list-style: none;
+}
+
+.navLi {
+    background: lavender;
+    border: solid black;
+    border-width: 2px 0 2px 2px;
+    height: 100%;
+    width: 60px;
+}
+
+.navLi:last-child {
+    border-right: 2px solid black;
+}
+
+.navBtn {
+    color: blue;
+    height: 100%;
+    text-decoration: none;
+    width: 100%;
+}
