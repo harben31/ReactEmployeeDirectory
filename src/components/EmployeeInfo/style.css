@@ -1,0 +1,8 @@
+*{
+    font-family: 'Bebas Neue', cursive;
+}
+
+empRow{
+    display: flex;
+    justify-content: center;
+}

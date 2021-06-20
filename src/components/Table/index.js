@@ -1,32 +1,20 @@
 import React from 'react';
+import './style.css';
+import TableHeader from '../TableHeader';
 
-const MapEmployees = ( props ) => {
+const Table = ( props ) => {
+    console.log('table', props);
     return (
         <div>
             <table id="empTable">
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                    </tr>
-                    <tr>
-                        <th>Name</th>
-                    </tr>
-                    <tr>
-                        <th>Email</th>
-                    </tr>
-                    <tr>
-                        <th>Age</th>
-                    </tr>
-                    <tr>
-                        <th>Phone Number</th>
-                    </tr>
-                </thead>
+                <TableHeader handleSort={props.handleSort}/>
                 <tbody>
                     {props.employees.map(employee => {
                         return(
                             <tr key={employee.login.uuid}>
                                 <td><img src={employee.picture.thumbnail}></img></td>
-                                <td>{employee.name.first} {employee.name.last}</td>
+                                <td>{employee.name.first}</td>
+                                <td>{employee.name.last}</td>
                                 <td>{employee.email}</td>
                                 <td>{employee.dob.age}</td>
                                 <td>{employee.phone}</td>
@@ -40,4 +28,4 @@ const MapEmployees = ( props ) => {
 }
 
 
-export default MapEmployees;
+export default Table;

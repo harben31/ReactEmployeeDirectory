@@ -1,0 +1,9 @@
+#empTable{
+    width: 100%;
+}
+
+td{
+   padding: 10px;
+   border: 1px solid rgba(51, 51, 51, 0.253); 
+   text-align: center;
+}

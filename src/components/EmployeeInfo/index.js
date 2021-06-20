@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import API from '../../utils/API';
-import MapEmployees from '../Table';
+import Table from '../Table';
 import Search from '../Search';
+import './style.css';
 
 class EmployeeInfo extends Component {
-    // const [employees, setEmployees] = useState([]);
-    // const [filterEmployees, setFilter] = useState([]);
     state = {
         employees: [],
-        filterEmployees: []
+        filterEmployees: [],
+        // sortOrder: 'descend'
     }
 
     componentDidMount(){
@@ -25,30 +25,89 @@ class EmployeeInfo extends Component {
         const filterValue = event.target.value;
         console.log(filterValue);
 
-        //form API call
+        //from API call
         const filterEmp = this.state.employees.filter(employee => {
             let empValues = Object.values(employee).join('').toLowerCase();
             return empValues.indexOf(filterValue.toLowerCase()) !== -1;
         })
-        console.log(filterEmp);
+       
         this.setState({
             filterEmployees: filterEmp
         })
     };
 
     //handleSort employees.sort grab all names out this.state.employee. fn(a-b)return 1 or -1
-    
+    handleSort = event => {
+        // if(this.state.sortOrder === 'descend'){
+        //     this.setState({
+        //         sortOrder: 'ascend'
+        //     })
+        // } else {
+        //     this.setState({
+        //         sortOrder: 'descend'
+        //     })
+        // }
+        //click on cat. cat is key. key is fed to sorter. 
+        
+        this.state.employees.sort((a, b) => {
+
+            let empA;
+            let empB;
+
+            switch(event.target.textContent) {
+                case 'First Name':
+                    empA = a.name.first;
+                    empB = b.name.first;
+                    break;
+                case 'Last Name':
+                    empA = a.name.last;
+                    empB = b.name.last;
+                    break;
+                case 'Email':
+                    empA = a.email;
+                    empB = b.email;
+                    break;
+                case 'Age':
+                    empA = a.dob.age;
+                    empB = b.dob.age;
+                    break;
+                case 'Phone Number':
+                    empA = a.phone;
+                    empB = b.phone;
+                    break;
+                default:
+                    empA = a.name.first;
+                    empB = b.name.first;
+            }
+
+            if(empA < empB) return -1
+            if(empA > empB) return 1
+            return 0
+        });
+
+        // const mapEmp = this.state.employees.map(emp => {
+        //     let empKey = Object.keys(emp);
+        //     console.log(empKey);
+        // })
+        // console.log(this.state.employees);
+
+        this.setState({
+            filterEmployees: this.state.employees
+        })
+    };
+
+
     render(){
         return(
             <div
             className='empRow'
             >
                 <Search handleSearch={this.handleSearch}/>
-                <MapEmployees employees={this.state.filterEmployees}/>
+                <Table employees={this.state.filterEmployees} handleSort={this.handleSort}/>
                 
             </div>
         )
-    }
+    };
     
 };
 

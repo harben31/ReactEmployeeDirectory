@@ -1,10 +1,12 @@
 import React from 'react';
+import './style.css'
 
 const Search = (props) => {
     return(
-        <>
-        <input name="employeeSearch" type="search" onChange={event => props.handleSearch(event)}/>
-        </>
+        <div className='searchWrap'>
+            <h3>Search</h3>
+            <input name="employeeSearch" type="search" onChange={event => props.handleSearch(event)}/>
+        </div>
     )
 };
 
