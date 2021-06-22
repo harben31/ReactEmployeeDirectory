@@ -3,7 +3,6 @@ import './style.css';
 import TableHeader from '../TableHeader';
 
 const Table = ( props ) => {
-    console.log('table', props);
     return (
         <div>
             <table id="empTable">

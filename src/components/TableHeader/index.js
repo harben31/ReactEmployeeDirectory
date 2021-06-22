@@ -3,7 +3,6 @@ import React from 'react';
 import './style.css'
 
 const TableHeader = ( props ) => {
-    console.log('tableheader', props);
     return (
         <thead>
             <th>Image</th>

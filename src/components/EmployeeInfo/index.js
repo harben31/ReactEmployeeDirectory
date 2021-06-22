@@ -8,8 +8,7 @@ class EmployeeInfo extends Component {
     state = {
         employees: [],
         filterEmployees: [],
-        // sortOrder: 'descend'
-    }
+    };
 
     componentDidMount(){
         API.userGen().then(res => {
@@ -23,34 +22,21 @@ class EmployeeInfo extends Component {
     handleSearch = event => {
         //input value
         const filterValue = event.target.value;
-        console.log(filterValue);
 
         //from API call
         const filterEmp = this.state.employees.filter(employee => {
             let empValues = Object.values(employee).join('').toLowerCase();
             return empValues.indexOf(filterValue.toLowerCase()) !== -1;
-        })
+        });
        
         this.setState({
             filterEmployees: filterEmp
-        })
+        });
     };
 
-    //handleSort employees.sort grab all names out this.state.employee. fn(a-b)return 1 or -1
-    handleSort = event => {
-        // if(this.state.sortOrder === 'descend'){
-        //     this.setState({
-        //         sortOrder: 'ascend'
-        //     })
-        // } else {
-        //     this.setState({
-        //         sortOrder: 'descend'
-        //     })
-        // }
-        //click on cat. cat is key. key is fed to sorter. 
+    handleSort = event => { 
         
         this.state.employees.sort((a, b) => {
-
             let empA;
             let empB;
 
@@ -81,19 +67,13 @@ class EmployeeInfo extends Component {
             }
 
             if(empA < empB) return -1
-            if(empA > empB) return 1
-            return 0
+            // if(empA > empB) return 1
+            return 1
         });
-
-        // const mapEmp = this.state.employees.map(emp => {
-        //     let empKey = Object.keys(emp);
-        //     console.log(empKey);
-        // })
-        // console.log(this.state.employees);
 
         this.setState({
             filterEmployees: this.state.employees
-        })
+        });
     };
 
 
@@ -106,7 +86,7 @@ class EmployeeInfo extends Component {
                 <Table employees={this.state.filterEmployees} handleSort={this.handleSort}/>
                 
             </div>
-        )
+        );
     };
     
 };
